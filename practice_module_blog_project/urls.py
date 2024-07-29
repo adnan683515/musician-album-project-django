@@ -20,7 +20,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("album_app/",include('album_app.urls')),
+    path("",include('album_app.urls')),
     path('musican_app/',include('musican_app.urls')),
     
 ]

@@ -24,7 +24,13 @@
         <tr>
             <th scope="row">{{item.id}}</th>
             <td>
-              <a href="{% url 'edit' item.Musican.id %}">{{item.Musican.First_Name}}</a>
+              {% if request.user.is_authenticated %}
+              <a href="{% url 'edit' item.Musican.id %}" class="text-decoration-none text-dark">{{item.Musican.First_Name}} {{item.Musican.Last_Name}}</a>
+              
+              {% else %}
+              
+              <a href="#" class="text-decoration-none text-dark">{{item.Musican.First_Name}} {{item.Musican.Last_Name}}</a>
+              {% endif %}
             </td>
             <td> {{item.Musican.Last_Name}}</td>
             <td>{{item.Musican.Email}} </td>
@@ -35,9 +41,19 @@
             <td >
                 
                 <div class='d-flex justify-content-center justify-content-around'>
+                  {% if request.user.is_authenticated %}
+                  
+                  
+                  
+                  <a href="{% url 'edit_page' item.id %}" class="text-decoration-none text-dark">Edit</a>
+                  <a href="{% url 'delete_item' item.Musican.id %}" class="text-decoration-none text-dark">Delete</a>
 
-                    <a href="{% url 'edit_page' item.id %}">Edit</a>
-                    <a href="{% url 'delete_item' item.Musican.id %}">Delete</a>
+                  {% else %}
+                    
+                  <a href="#" class="text-decoration-none text-dark">Edit</a>
+                  <a href="#" class="text-decoration-none text-dark">Delete</a>
+
+                  {% endif %}
                 </div>
             </td>
           </tr>
